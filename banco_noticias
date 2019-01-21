@@ -1,0 +1,783 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.6 (Ubuntu 10.6-0ubuntu0.18.04.1)
+-- Dumped by pg_dump version 10.6 (Ubuntu 10.6-0ubuntu0.18.04.1)
+
+-- Started on 2019-01-21 20:13:09 -02
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 13043)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 3033 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 199 (class 1259 OID 16407)
+-- Name: AspNetRoleClaims; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetRoleClaims" (
+    "Id" integer NOT NULL,
+    "RoleId" text NOT NULL,
+    "ClaimType" text,
+    "ClaimValue" text
+);
+
+
+ALTER TABLE public."AspNetRoleClaims" OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 16491)
+-- Name: AspNetRoleClaims_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."AspNetRoleClaims_Id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."AspNetRoleClaims_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3034 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: AspNetRoleClaims_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."AspNetRoleClaims_Id_seq" OWNED BY public."AspNetRoleClaims"."Id";
+
+
+--
+-- TOC entry 197 (class 1259 OID 16391)
+-- Name: AspNetRoles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetRoles" (
+    "Id" text NOT NULL,
+    "Name" character varying(256),
+    "NormalizedName" character varying(256),
+    "ConcurrencyStamp" text
+);
+
+
+ALTER TABLE public."AspNetRoles" OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16420)
+-- Name: AspNetUserClaims; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetUserClaims" (
+    "Id" integer NOT NULL,
+    "UserId" text NOT NULL,
+    "ClaimType" text,
+    "ClaimValue" text
+);
+
+
+ALTER TABLE public."AspNetUserClaims" OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16486)
+-- Name: AspNetUserClaims_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."AspNetUserClaims_Id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."AspNetUserClaims_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3035 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: AspNetUserClaims_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."AspNetUserClaims_Id_seq" OWNED BY public."AspNetUserClaims"."Id";
+
+
+--
+-- TOC entry 201 (class 1259 OID 16433)
+-- Name: AspNetUserLogins; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetUserLogins" (
+    "LoginProvider" character varying(128) NOT NULL,
+    "ProviderKey" character varying(128) NOT NULL,
+    "ProviderDisplayName" text,
+    "UserId" text NOT NULL
+);
+
+
+ALTER TABLE public."AspNetUserLogins" OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16446)
+-- Name: AspNetUserRoles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetUserRoles" (
+    "UserId" text NOT NULL,
+    "RoleId" text NOT NULL
+);
+
+
+ALTER TABLE public."AspNetUserRoles" OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16464)
+-- Name: AspNetUserTokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetUserTokens" (
+    "UserId" text NOT NULL,
+    "LoginProvider" character varying(128) NOT NULL,
+    "Name" character varying(128) NOT NULL,
+    "Value" text
+);
+
+
+ALTER TABLE public."AspNetUserTokens" OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 16399)
+-- Name: AspNetUsers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."AspNetUsers" (
+    "Id" text NOT NULL,
+    "UserName" character varying(256),
+    "NormalizedUserName" character varying(256),
+    "Email" character varying(256),
+    "NormalizedEmail" character varying(256),
+    "EmailConfirmed" boolean NOT NULL,
+    "PasswordHash" text,
+    "SecurityStamp" text,
+    "ConcurrencyStamp" text,
+    "PhoneNumber" text,
+    "PhoneNumberConfirmed" boolean NOT NULL,
+    "TwoFactorEnabled" boolean NOT NULL,
+    "LockoutEnd" timestamp with time zone,
+    "LockoutEnabled" boolean NOT NULL,
+    "AccessFailedCount" integer NOT NULL
+);
+
+
+ALTER TABLE public."AspNetUsers" OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16507)
+-- Name: Categorias; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Categorias" (
+    "Id" bigint NOT NULL,
+    "Nome" text
+);
+
+
+ALTER TABLE public."Categorias" OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16505)
+-- Name: Categorias_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Categorias_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Categorias_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3036 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: Categorias_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Categorias_Id_seq" OWNED BY public."Categorias"."Id";
+
+
+--
+-- TOC entry 207 (class 1259 OID 16496)
+-- Name: Noticias; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Noticias" (
+    "Id" bigint NOT NULL,
+    "Titulo" text,
+    "Descricao" text,
+    "DataPublicacao" timestamp without time zone NOT NULL,
+    "Img" text,
+    "CategoriaId" integer DEFAULT 0 NOT NULL,
+    "CategoriaId1" bigint,
+    "DescricaoCurta" text
+);
+
+
+ALTER TABLE public."Noticias" OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16494)
+-- Name: Noticias_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Noticias_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Noticias_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3037 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: Noticias_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Noticias_Id_seq" OWNED BY public."Noticias"."Id";
+
+
+--
+-- TOC entry 211 (class 1259 OID 16683)
+-- Name: Usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Usuarios" (
+    "Id" bigint NOT NULL,
+    "Login" text,
+    "Senha" text,
+    "Nome" text
+);
+
+
+ALTER TABLE public."Usuarios" OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16681)
+-- Name: Usuarios_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Usuarios_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Usuarios_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3038 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Usuarios_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Usuarios_Id_seq" OWNED BY public."Usuarios"."Id";
+
+
+--
+-- TOC entry 196 (class 1259 OID 16386)
+-- Name: __EFMigrationsHistory; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public."__EFMigrationsHistory" OWNER TO postgres;
+
+--
+-- TOC entry 2846 (class 2604 OID 16493)
+-- Name: AspNetRoleClaims Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetRoleClaims" ALTER COLUMN "Id" SET DEFAULT nextval('public."AspNetRoleClaims_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 2847 (class 2604 OID 16488)
+-- Name: AspNetUserClaims Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserClaims" ALTER COLUMN "Id" SET DEFAULT nextval('public."AspNetUserClaims_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 2850 (class 2604 OID 16510)
+-- Name: Categorias Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Categorias" ALTER COLUMN "Id" SET DEFAULT nextval('public."Categorias_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 2848 (class 2604 OID 16499)
+-- Name: Noticias Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Noticias" ALTER COLUMN "Id" SET DEFAULT nextval('public."Noticias_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 2851 (class 2604 OID 16686)
+-- Name: Usuarios Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Usuarios" ALTER COLUMN "Id" SET DEFAULT nextval('public."Usuarios_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 3013 (class 0 OID 16407)
+-- Dependencies: 199
+-- Data for Name: AspNetRoleClaims; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetRoleClaims" ("Id", "RoleId", "ClaimType", "ClaimValue") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3011 (class 0 OID 16391)
+-- Dependencies: 197
+-- Data for Name: AspNetRoles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetRoles" ("Id", "Name", "NormalizedName", "ConcurrencyStamp") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3014 (class 0 OID 16420)
+-- Dependencies: 200
+-- Data for Name: AspNetUserClaims; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetUserClaims" ("Id", "UserId", "ClaimType", "ClaimValue") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3015 (class 0 OID 16433)
+-- Dependencies: 201
+-- Data for Name: AspNetUserLogins; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetUserLogins" ("LoginProvider", "ProviderKey", "ProviderDisplayName", "UserId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3016 (class 0 OID 16446)
+-- Dependencies: 202
+-- Data for Name: AspNetUserRoles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetUserRoles" ("UserId", "RoleId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3017 (class 0 OID 16464)
+-- Dependencies: 203
+-- Data for Name: AspNetUserTokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetUserTokens" ("UserId", "LoginProvider", "Name", "Value") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3012 (class 0 OID 16399)
+-- Dependencies: 198
+-- Data for Name: AspNetUsers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."AspNetUsers" ("Id", "UserName", "NormalizedUserName", "Email", "NormalizedEmail", "EmailConfirmed", "PasswordHash", "SecurityStamp", "ConcurrencyStamp", "PhoneNumber", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnd", "LockoutEnabled", "AccessFailedCount") FROM stdin;
+061a7b57-de86-4f77-a181-b9eac7fc1ee0	carloseduardo_15@hotmail.com	CARLOSEDUARDO_15@HOTMAIL.COM	carloseduardo_15@hotmail.com	CARLOSEDUARDO_15@HOTMAIL.COM	f	AQAAAAEAACcQAAAAEKpzie9li/llMxSWdb5Hz/WpzNKxPF1m/mgvykyi7RHcLhjfeuP3QMAf+GXUXz/5RA==	GRJRDOLCCT5RPV7P7O5S2QMERZD6ZIPQ	6397f1e6-a977-48cd-bfd7-3966f39e69a3	\N	f	f	\N	t	0
+\.
+
+
+--
+-- TOC entry 3023 (class 0 OID 16507)
+-- Dependencies: 209
+-- Data for Name: Categorias; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Categorias" ("Id", "Nome") FROM stdin;
+6	Teste Web
+1	Teste
+2	Categoria 1
+\.
+
+
+--
+-- TOC entry 3021 (class 0 OID 16496)
+-- Dependencies: 207
+-- Data for Name: Noticias; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Noticias" ("Id", "Titulo", "Descricao", "DataPublicacao", "Img", "CategoriaId", "CategoriaId1", "DescricaoCurta") FROM stdin;
+12	Teste Postman 1	ABCDa	2019-01-20 11:29:00	\N	6	\N	AAAaa
+9	Projeto 8	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:08:50.028692	\N	1	\N	\N
+5	Projeto 4	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:04:18.479369	img4.jpg	2	2	\N
+6	Projeto 5	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:08:50.028692	img5.jpg	1	\N	\N
+8	Projeto 7	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:08:50.028692	img7.png	2	\N	\N
+10	Projeto 9	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:22:13.829406		1	\N	\N
+7	Projeto 6	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:08:50.028692	img6.png	1	\N	\N
+2	Projeto 1	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:04:18.479369	img1.jpg	1	1	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+3	Projeto 2	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:04:18.479369	img2.jpeg	1	1	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+4	Projeto 3	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.	2019-01-18 11:04:18.479369	img3.jpg	2	2	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
+15	Teste Web	Teste Web Teste Web Teste Web Teste Web	2019-01-21 20:02:48.109333	\N	6	\N	Teste Web
+\.
+
+
+--
+-- TOC entry 3025 (class 0 OID 16683)
+-- Dependencies: 211
+-- Data for Name: Usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Usuarios" ("Id", "Login", "Senha", "Nome") FROM stdin;
+1	dudu.u3@gmail.com	1234	Carlos Eduardo
+\.
+
+
+--
+-- TOC entry 3010 (class 0 OID 16386)
+-- Dependencies: 196
+-- Data for Name: __EFMigrationsHistory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") FROM stdin;
+00000000000000_CreateIdentitySchema	2.2.1-servicing-10028
+20190117194838_InitialMigration	2.2.1-servicing-10028
+20190117195514_UpdateMigration	2.2.1-servicing-10028
+20190121163921_UsuariosCreate	2.2.1-servicing-10028
+\.
+
+
+--
+-- TOC entry 3039 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: AspNetRoleClaims_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."AspNetRoleClaims_Id_seq"', 1, false);
+
+
+--
+-- TOC entry 3040 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: AspNetUserClaims_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."AspNetUserClaims_Id_seq"', 1, false);
+
+
+--
+-- TOC entry 3041 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: Categorias_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Categorias_Id_seq"', 8, true);
+
+
+--
+-- TOC entry 3042 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: Noticias_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Noticias_Id_seq"', 16, true);
+
+
+--
+-- TOC entry 3043 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: Usuarios_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Usuarios_Id_seq"', 1, true);
+
+
+--
+-- TOC entry 2863 (class 2606 OID 16490)
+-- Name: AspNetRoleClaims PK_AspNetRoleClaims; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetRoleClaims"
+    ADD CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2855 (class 2606 OID 16398)
+-- Name: AspNetRoles PK_AspNetRoles; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetRoles"
+    ADD CONSTRAINT "PK_AspNetRoles" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2866 (class 2606 OID 16485)
+-- Name: AspNetUserClaims PK_AspNetUserClaims; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserClaims"
+    ADD CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2869 (class 2606 OID 16440)
+-- Name: AspNetUserLogins PK_AspNetUserLogins; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserLogins"
+    ADD CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey");
+
+
+--
+-- TOC entry 2872 (class 2606 OID 16453)
+-- Name: AspNetUserRoles PK_AspNetUserRoles; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserRoles"
+    ADD CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId");
+
+
+--
+-- TOC entry 2874 (class 2606 OID 16471)
+-- Name: AspNetUserTokens PK_AspNetUserTokens; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserTokens"
+    ADD CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name");
+
+
+--
+-- TOC entry 2859 (class 2606 OID 16406)
+-- Name: AspNetUsers PK_AspNetUsers; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUsers"
+    ADD CONSTRAINT "PK_AspNetUsers" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2879 (class 2606 OID 16515)
+-- Name: Categorias PK_Categorias; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Categorias"
+    ADD CONSTRAINT "PK_Categorias" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2877 (class 2606 OID 16504)
+-- Name: Noticias PK_Noticias; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Noticias"
+    ADD CONSTRAINT "PK_Noticias" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2881 (class 2606 OID 16691)
+-- Name: Usuarios PK_Usuarios; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Usuarios"
+    ADD CONSTRAINT "PK_Usuarios" PRIMARY KEY ("Id");
+
+
+--
+-- TOC entry 2853 (class 2606 OID 16390)
+-- Name: __EFMigrationsHistory PK___EFMigrationsHistory; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."__EFMigrationsHistory"
+    ADD CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId");
+
+
+--
+-- TOC entry 2857 (class 1259 OID 16482)
+-- Name: EmailIndex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "EmailIndex" ON public."AspNetUsers" USING btree ("NormalizedEmail");
+
+
+--
+-- TOC entry 2861 (class 1259 OID 16477)
+-- Name: IX_AspNetRoleClaims_RoleId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON public."AspNetRoleClaims" USING btree ("RoleId");
+
+
+--
+-- TOC entry 2864 (class 1259 OID 16479)
+-- Name: IX_AspNetUserClaims_UserId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_AspNetUserClaims_UserId" ON public."AspNetUserClaims" USING btree ("UserId");
+
+
+--
+-- TOC entry 2867 (class 1259 OID 16480)
+-- Name: IX_AspNetUserLogins_UserId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_AspNetUserLogins_UserId" ON public."AspNetUserLogins" USING btree ("UserId");
+
+
+--
+-- TOC entry 2870 (class 1259 OID 16481)
+-- Name: IX_AspNetUserRoles_RoleId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_AspNetUserRoles_RoleId" ON public."AspNetUserRoles" USING btree ("RoleId");
+
+
+--
+-- TOC entry 2875 (class 1259 OID 16530)
+-- Name: IX_Noticias_CategoriaId1; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_Noticias_CategoriaId1" ON public."Noticias" USING btree ("CategoriaId1");
+
+
+--
+-- TOC entry 2856 (class 1259 OID 16478)
+-- Name: RoleNameIndex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX "RoleNameIndex" ON public."AspNetRoles" USING btree ("NormalizedName");
+
+
+--
+-- TOC entry 2860 (class 1259 OID 16483)
+-- Name: UserNameIndex; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX "UserNameIndex" ON public."AspNetUsers" USING btree ("NormalizedUserName");
+
+
+--
+-- TOC entry 2882 (class 2606 OID 16415)
+-- Name: AspNetRoleClaims FK_AspNetRoleClaims_AspNetRoles_RoleId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetRoleClaims"
+    ADD CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES public."AspNetRoles"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2883 (class 2606 OID 16428)
+-- Name: AspNetUserClaims FK_AspNetUserClaims_AspNetUsers_UserId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserClaims"
+    ADD CONSTRAINT "FK_AspNetUserClaims_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES public."AspNetUsers"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2884 (class 2606 OID 16441)
+-- Name: AspNetUserLogins FK_AspNetUserLogins_AspNetUsers_UserId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserLogins"
+    ADD CONSTRAINT "FK_AspNetUserLogins_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES public."AspNetUsers"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2885 (class 2606 OID 16454)
+-- Name: AspNetUserRoles FK_AspNetUserRoles_AspNetRoles_RoleId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserRoles"
+    ADD CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES public."AspNetRoles"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2886 (class 2606 OID 16459)
+-- Name: AspNetUserRoles FK_AspNetUserRoles_AspNetUsers_UserId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserRoles"
+    ADD CONSTRAINT "FK_AspNetUserRoles_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES public."AspNetUsers"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2887 (class 2606 OID 16472)
+-- Name: AspNetUserTokens FK_AspNetUserTokens_AspNetUsers_UserId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."AspNetUserTokens"
+    ADD CONSTRAINT "FK_AspNetUserTokens_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES public."AspNetUsers"("Id") ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2888 (class 2606 OID 16531)
+-- Name: Noticias FK_Noticias_Categorias_CategoriaId1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Noticias"
+    ADD CONSTRAINT "FK_Noticias_Categorias_CategoriaId1" FOREIGN KEY ("CategoriaId1") REFERENCES public."Categorias"("Id") ON DELETE RESTRICT;
+
+
+-- Completed on 2019-01-21 20:13:09 -02
+
+--
+-- PostgreSQL database dump complete
+--
+

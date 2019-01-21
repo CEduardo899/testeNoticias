@@ -1,0 +1,22 @@
+<div class="loading">
+    <img src="src/img/loading.gif" alt="Carregando dados" class="img-responsive d-block mx-auto">
+</div>
+<div id="exibir-noticia">
+    <!-- Page Heading -->
+    <h1 class="my-4">{{noticia.titulo}}</h1>
+    <button type="button" class="btn btn-primary" ng-click="voltar()">Voltar</button>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <img ng-if="!noticia.img" class="card-img-top" src="http://placehold.it/700x400" alt="">
+            <img ng-if="noticia.img" class="card-img-top" src="{{'https://localhost:5001/img/'+noticia.img}}" alt="">
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="my-4">{{noticia.descricao}}</p>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary my-4" ng-click="voltar()">Voltar</button>
+</div>

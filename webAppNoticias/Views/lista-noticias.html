@@ -1,0 +1,24 @@
+<!-- Page Heading -->
+<h1 class="my-4">Lista de Notícias</h1>
+<div class="loading">
+    <img src="src/img/loading.gif" alt="Carregando dados" class="img-responsive d-block mx-auto">
+</div>
+<div id="lista-noticias">
+    <div class="row">
+        <div class="col-lg-6 portfolio-item" ng-repeat="noticia in noticias">
+            <div class="card h-100">
+            <a href="#!/noticia/{{noticia.id}}">
+                <img ng-if="!noticia.img" class="card-img-top" src="http://placehold.it/700x400" alt="">
+                <img ng-if="noticia.img" class="card-img-top" src="{{'https://localhost:5001/img/'+noticia.img}}" alt="">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="#!noticia/{{noticia.id}}" ng-click="getNoticia(noticia.id)">{{noticia.titulo}}</a>
+                </h4>
+                <p class="card-text">{{noticia.descricaoCurta}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

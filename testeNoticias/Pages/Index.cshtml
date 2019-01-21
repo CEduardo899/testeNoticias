@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div ng-app="noticias" ng-controller="noticiasController" ng-init="getNoticias()">
+    
+    <div class="loading">
+        <img src="img/loading.gif" alt="Carregando dados" class="img-responsive d-block mx-auto">
+    </div>
+    <div id="lista-noticias">
+        <!-- Page Heading -->
+        <h1 class="my-4">Lista de Notícias</h1>
+        <div class="row">
+            <div class="col-lg-6 portfolio-item" ng-repeat="noticia in noticias">
+                <div class="card h-100">
+                <a href="#" ng-click="getNoticia(noticia.id)"">
+                    <img ng-if="!noticia.img" class="card-img-top" src="http://placehold.it/700x400" alt="">
+                    <img ng-if="noticia.img" class="card-img-top" src="{{'img/'+noticia.img}}" alt="">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#" ng-click="getNoticia(noticia.id)">{{noticia.titulo}}</a>
+                    </h4>
+                    <p class="card-text">{{noticia.descricao}}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="exibir-noticia" ng-controller="noticiasController">
+        <!-- Page Heading -->
+        <h1 class="my-4">{{noticia.titulo}}</h1>
+        <button type="button" class="btn btn-primary" ng-click="voltar()">Voltar</button>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <img ng-if="!noticia.img" class="card-img-top" src="http://placehold.it/700x400" alt="">
+                <img ng-if="noticia.img" class="card-img-top" src="{{'img/'+noticia.img}}" alt="">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="my-4">{{noticia.descricao}}</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="voltar()">Voltar</button>
+    </div>
+</div>

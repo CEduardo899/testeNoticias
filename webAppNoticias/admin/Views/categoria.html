@@ -1,0 +1,57 @@
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Categoria</li>
+  </ol>
+
+  <!-- Page Content -->
+<button ype="button" class="btn btn-primary" onclick="jQuery('#categoriaModal').modal('show')">Cadastrar Categoria</button>
+<div class="loading">
+    <img src="../../src/img/loading.gif" alt="Carregando dados" class="img-responsive d-block mx-auto">
+</div>
+<div id="lista-categorias" class="my-4" ng-init="getCategorias()">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="categoria in categorias">
+                <td>{{categoria.nome}}</td>
+                <td>
+                    <button class="btn btn-info btn-xs" ng-click="editar(categoria)">Editar</button>
+                    <button class="btn btn-danger btn-xs" ng-click="excluir(categoria)">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="categoriaModal" tabindex="-1" role="dialog" aria-labelledby="categoriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoriaModalLabel">Categoria</h5>
+                <button type="button" id="close-modal" class="close" data-dismiss="modal" aria-label="Close" ng-click="categoria = {}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" class="form-control" required ng-model="categoria.nome">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="categoria = {}">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" ng-click="salvar()">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
